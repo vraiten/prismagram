@@ -1,6 +1,5 @@
 export default {
-
     Query: {
-        sayHello: () => "Hello"
+        sayGoodbye: () => "jongphil"
     }
 };
