@@ -1,4 +1,11 @@
-type Query{
+import { prisma } from "../../../../generated/prisma-client"
 
-  userById(id:String!):User!
-}
+export default {
+
+    Query: {
+        userById: (_, args) => {
+            const { id } = args;
+            return prisma.user({ id }).$fragment();
+        }
+    }
+};
