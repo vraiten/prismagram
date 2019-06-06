@@ -4,9 +4,13 @@ dotenv.config({path: path.resolve(__dirname,".env") });
 
 import nodemailer from "nodemailer";
 import sgTransport from "nodemailer-sendgrid-transport";
+import jwt from "jsonwebtoken";
 
 
 import { adjectives,nouns} from "./words";
+
+
+
 
 export const generateSecret = () => {
 
@@ -35,9 +39,11 @@ export const sendSecretMail = (address, secret) => {
 	from : "jp798@naver.com",
 	to: address,
 	subject: "Login Secret for Prismagram.. ",
-	html : `Hello! Your login secret it ${secret}.<br/> Copy paste on the app/website to log in. `
+	html : `Hello! Your login secret is <strong> ${secret}. </strong>  <br/> Copy paste on the app/website to log in. `
 
  };
  return sendMail(email);
 
 };
+
+export const generateToken = id => jwt.sign({id}, process.env.JWT_SECRET);
